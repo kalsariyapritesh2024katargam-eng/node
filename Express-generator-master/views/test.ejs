@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRUD Form + Table UI</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        width: 600px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    form input {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    form button {
+        width: 100%;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    table th {
+        background: #007bff;
+        color: white;
+        padding: 12px;
+    }
+
+    table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .btn {
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-delete {
+        background: #dc3545;
+        color: white;
+    }
+
+    .btn-edit {
+        background: #28a745;
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background: #b52a36;
+    }
+
+    .btn-edit:hover {
+        background: #1f7f33;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Student Details</h2>
+
+    <form action="/createData">
+        <input type="hidden" name="id" value="<%= editrecord ? editrecord.id : '' %>">
+
+        <input type="text" name="name" placeholder="Enter Name" 
+               value="<%= editrecord ? editrecord.name : '' %>">
+
+        <input type="text" name="surname" placeholder="Enter Surname" 
+               value="<%= editrecord ? editrecord.surname : '' %>">
+
+        <button type="submit">
+            <%= editrecord ? "Update" : "Submit" %>
+        </button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+
+        <% data.map((i)=> { %>
+            <tr>
+                <td><%= i.name %></td>
+                <td><%= i.surname %></td>
+
+                <td>
+                    <a href="/deleteData/<%= i._id %>">
+                        <button class="btn btn-delete">Delete</button>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="/editData/<%= i._id %>">
+                        <button class="btn btn-edit">Edit</button>
+                    </a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+
+</div>
+
+</body>
+</html>

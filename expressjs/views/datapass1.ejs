@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 10px;
+            background-color: beige;
+            box-shadow: 5px 10px 20px #888888;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            box-shadow: 5px 10px 20px #888888;
+        }
+
+        td {
+            padding: 10px;
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <br />
+
+    <% function total(i) {
+         return i.s1 + i.s2 + i.s3; 
+    } %>
+
+    <% function percentage(i) { 
+         return ((i.s1 + i.s2 + i.s3) / 3);
+     } %>
+
+    <% function max(i) {
+         return Math.max(i.s1, i.s2, i.s3); 
+     } %>
+     
+    <% function min(i) {
+         return Math.min(i.s1, i.s2, i.s3); 
+     } %>
+
+                  <div class="center">
+                        <table border="1">
+                            <tr>
+                                <td>name</td>
+                                <td>s1</td>
+                                <td>s2</td>
+                                <td>s3</td>
+                                <td>total</td>
+                                <td>Percentage</td>
+                                <td>max</td>
+                                <td>min</td>
+                            </tr>
+                            <% arryobj.map((i, index)=> { %>
+                                <tr>
+                                    <td>
+                                        <%= i.name %>
+                                    </td>
+                                    <td>
+                                        <%= i.s1 %>
+                                    </td>
+                                    <td>
+                                        <%= i.s2 %>
+                                    </td>
+                                    <td>
+                                        <%= i.s3 %>
+                                    </td>
+                                    <td>
+                                        <%= total(i) %>
+                                    </td>
+                                    <td>
+                                        <%= percentage(i) %>%
+                                    </td>
+                                    <td>
+                                        <%= max(i) %>
+                                    </td>
+                                    <td>
+                                        <%= min(i) %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </table>
+                    </div>
+</body>
+
+</html>

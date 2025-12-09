@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Project</title>
+    <style>
+        body{
+            font-family: Arial;
+            background: #f3f3f3;
+            padding: 20px;
+        }
+        .form-box{
+            width: 350px;
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+        input{
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid #888;
+        }
+        button{
+            padding: 8px 15px;
+            border: none;
+            background: crimson;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .card-container{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card{
+            width: 250px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #aaa;
+        }
+        .card h3{
+            margin-bottom: 6px;
+        }
+        .btn{
+            background: royalblue;
+            margin-right: 10px;
+        }
+        .delete-btn{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-box">
+        <h2>Create Card</h2>
+        <form action="/creatdata">
+            <input type="text" name="id" hidden value="<%= (editdata) ? editdata._id : ''%>">
+            <input type="text" name="name" value="<%= (editdata) ? editdata.name : ''%>" placeholder="Name">
+            <input type="text" name="fathername" value="<%= (editdata) ? editdata.fathername : ''%>" placeholder="Father Name">
+            <input type="text" name="surname" value="<%= (editdata) ? editdata.surname :'' %>" placeholder="Surname">
+            <input type="number" name="age" value="<%= (editdata) ? editdata.age :'' %>" placeholder="Age">
+            <input type="text" name="hoby" value="<%= (editdata) ? editdata.hoby :'' %>" placeholder="Hobby">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="card-container">
+        <% data.map((i,index)=>{ %>
+            <div class="card">
+                <h3><%= i.name %> <%= i.surname %>  <%= i.fathername %></h3>
+                <p><strong>Age:</strong> <%= i.age %></p>
+                <p><strong>Hobby:</strong> <%= i.hoby %></p>
+
+                <a href="/editdata/<%= i._id %>">
+                    <button class="btn">Update</button>
+                </a>
+
+                <a href="/deletedata/<%= i._id %>">
+                    <button class="delete-btn">Delete</button>
+                </a>
+            </div>
+        <% }) %>
+    </div>
+
+</body>
+</html>

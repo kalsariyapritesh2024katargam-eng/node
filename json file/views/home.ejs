@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 10px;
+            background-color: beige;
+            box-shadow: 5px 10px 20px #888888;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        table {
+            box-shadow: 5px 10px 20px #888888;
+        }
+
+        td {
+            padding: 10px;
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <form action="/createData">
+   name = <input type="text" name="name" value="<%= (editData) ? editData.name : "" %>"><br><br>
+   surname = <input type="text" name="surname" value="<%= (editData) ? editData.surname : "" %>"><br><br>
+   age = <input type="number" name="age" value="<%= (editData) ? editData.age : "" %>"><br><br>
+   <input type="submit">
+</form>
+    </div>
+<div class="center">
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Surname</td>
+        <td>Age.</td>
+        <td>Delete</td>
+        <td>Editid</td>
+    </tr>
+     <% setData.map((i , index)=> {
+        %>
+        <tr>
+            <td>
+                <%= index + 1 %>
+            </td>
+            <td>
+                <%= i.name %>
+            </td>
+            <td>
+                <%= i.surname %>
+            </td>
+              <td>
+                <%= i.age %>
+            </td>
+            <td>
+                <button><a href="/deleteData/<%= index %>">delete</a></button>
+            </td>
+            <td>
+                <button><a href="/editData/<%= index %>">edit</a></button>
+            </td>
+        </tr>
+        <% }) %>
+
+</table>
+</div>
+
+</body>
+</html>

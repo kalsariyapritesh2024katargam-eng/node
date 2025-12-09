@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+body{
+  height:100vh;
+  background:#000014;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,sans-serif;
+}
+.card{
+  width:520px;
+  padding:40px;
+  border-radius:18px;
+  background:#0a0020;
+  border:2px solid #6a00ff;
+  box-shadow:0 0 25px #b300ff;
+  color:white;
+}
+h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#d200ff;
+}
+.item{
+  display:flex;
+  justify-content:space-between;
+  background:#1b0035;
+  padding:14px 18px;
+  border-radius:10px;
+  margin-top:12px;
+  border-left:4px solid #e200ff;
+}
+button{
+  width:100%;
+  margin-top:28px;
+  padding:12px;
+  border:none;
+  background:#ff00c3;
+  color:white;
+  font-size:17px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:.3s;
+}
+button:hover{
+  background:#ff30df;
+  box-shadow:0 0 15px #ff3be6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Welcome, <%= user.username %> 🚀</h2>
+
+  <div class="item"><span>Username</span> <span><%= user.username %></span></div>
+  <div class="item"><span>Email</span> <span><%= user.email %></span></div>
+  <div class="item"><span>Password</span> <span>********</span></div>
+
+  <form action="/logout">
+    <button>Logout</button>
+  </form>
+</div>
+
+</body>
+</html>

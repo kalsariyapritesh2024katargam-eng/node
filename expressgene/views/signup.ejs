@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ultra Futuristic Sign Up</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+  
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body{
+    background:radial-gradient(circle at top,#38006a,#050011 65%);
+    height:100vh;display:flex;justify-content:center;align-items:center;
+    overflow:hidden;
+  }
+
+  /* ==========  3D Glow Circles  ========== */
+  .blob{
+    position:absolute;
+    width:250px;height:250px;
+    background:radial-gradient(circle,#ff00f7,#6800ff);
+    filter:blur(90px);opacity:0.6;border-radius:50%;
+    animation:moveBlob 6s infinite alternate ease-in-out;
+  }
+  .blob:nth-child(1){top:10%;left:15%;}
+  .blob:nth-child(2){bottom:10%;right:15%;animation-delay:2s;}
+
+  @keyframes moveBlob{
+    0%{transform:translateY(0px) scale(1);}
+    100%{transform:translateY(-60px) scale(1.4);}
+  }
+
+  /* ========== Glass Form Card ========== */
+  .card{
+    width:420px;padding:40px;border-radius:20px;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(20px);
+    animation:fadeUp 1s ease-out;
+    box-shadow:0 0 35px rgba(255,0,255,0.4),
+               inset 0 0 40px rgba(255,0,255,0.2);
+  }
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(50px) scale(.8);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+
+  .card h2{
+    text-align:center;font-size:32px;color:#fff;
+    text-shadow:0 0 18px #ff00d4;
+    margin-bottom:25px;
+  }
+
+  .card input{
+    width:100%;padding:14px;margin:14px 0;
+    border-radius:12px;border:none;
+    background:rgba(255,255,255,0.15);
+    color:#fff;font-size:17px;outline:none;
+    transition:.35s;
+  }
+
+  .card input:focus{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #ff4dff;
+    background:rgba(255,255,255,0.25);
+  }
+
+  button{
+    width:100%;padding:15px;border:none;
+    background:linear-gradient(45deg,#ff00e6,#7a00ff);
+    border-radius:14px;font-size:19px;color:#fff;cursor:pointer;
+    box-shadow:0 0 18px #ff00d4;transition:.3s;
+  }
+  button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 30px #ff00ff;
+  }
+
+  .login{
+    text-align:center;margin-top:15px;color:#fff;
+  }
+  .login a{
+    color:#00e5ff;text-decoration:none;font-weight:bold;
+    transition:.35s;
+  }
+  .login a:hover{text-shadow:0 0 12px cyan;}
+    #vanta-bg{
+    position:absolute;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+  }
+
+</style>
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+<div class="blob"></div>
+<div class="blob"></div>
+
+<div class="card" id="signupBox">
+  <h2>Create Account</h2>
+  <form action="/signupUser" method="post">
+    <input type="text" name="username" placeholder="Enter Username" required>
+    <input type="email" name="email" placeholder="Enter Email" required>
+    <input type="password" name="password" placeholder="Create Password" required>
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <div class="login">
+    Already have account?
+    <a href="/" id="loginBtn">Login</a>
+  </div>
+</div>
+
+<script>
+  document.getElementById("loginBtn").addEventListener("click",()=>{
+    document.getElementById("signupBox").style.animation="fadeUp .6s reverse";
+    setTimeout(()=>{window.location.href="/";},500);
+  });
+</script>
+<!-- Vanta + ThreeJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+<script>
+VANTA.NET({
+  el: "#vanta-bg",
+  mouseControls: true,
+  touchControls: true,
+  gyroControls: false,
+  minHeight: 200.00,
+  minWidth: 200.00,
+  scale: 1.00,
+  scaleMobile: 1.00
+})
+</script>
+
+</body>
+</html>
