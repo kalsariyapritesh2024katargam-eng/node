@@ -6,7 +6,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var userRouter = require('./routes/user')
+var userRouter = require('./routes/user');
+var studentRouter = require('./routes/student')
+var marksRouter = require('./routes/marks')
 
 const mongoose = require('mongoose');
 
@@ -24,7 +26,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/',userRouter)
+
+app.use('/marks',marksRouter)
+app.use('/student',studentRouter)
+app.use('/user',userRouter)
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 
