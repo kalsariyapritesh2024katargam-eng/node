@@ -2,7 +2,7 @@ let USER = require('../model/marks')
 
 exports.pageview = async (req, res) => {
     try {
-        const data = await USER.find()
+        const data = await USER.find().populate(['Student_name','Student_username'])
         res.status(200).json({
             status : 'Success',
             message : 'Data found',
